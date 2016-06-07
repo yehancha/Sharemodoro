@@ -1,0 +1,32 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/0.4.0/firebase-ui-auth.js"></script>
+    <script src="firebase.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/0.4.0/firebase-ui-auth.css" />
+</head>
+
+<body>
+    <button id="btnSignOut">Sign out</button>
+    <script>
+    // Initialize the FirebaseUI Widget using Firebase.
+    var auth = firebase.auth();
+    auth.onAuthStateChanged(function (user) {
+        if (!user) {
+            window.location = "auth.html";
+        } else {
+            document.write("Hi, " + user.displayName);
+        }
+    }, function(error) {
+        console.log(error);
+    });
+    
+    $("#btnSignOut").click(function () {
+        auth.signOut();
+    });
+    </script>
+</body>
+</html>
